@@ -1,0 +1,24 @@
+{
+  "name": "crono-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@gabpires/eslint-config": "^1.2.0",
+    "@types/node": "^20.11.17",
+    "cz-emoji-conventional": "^1.0.2",
+    "eslint-plugin-simple-import-sort": "^12.0.0",
+    "typescript": "^5.3.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-emoji-conventional"
+    }
+  }
+}
