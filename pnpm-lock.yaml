@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  dotenv:
-    specifier: ^16.4.2
-    version: 16.4.2
   fastify:
     specifier: ^4.26.1
     version: 4.26.1
@@ -25,6 +22,9 @@ devDependencies:
   cz-emoji-conventional:
     specifier: ^1.0.2
     version: 1.0.2(@types/node@20.11.17)(typescript@5.3.3)
+  dotenv:
+    specifier: ^16.4.2
+    version: 16.4.2
   eslint-plugin-simple-import-sort:
     specifier: ^12.0.0
     version: 12.0.0(eslint@8.56.0)
@@ -1216,7 +1216,7 @@ packages:
   /dotenv@16.4.2:
     resolution: {integrity: sha512-rZSSFxke7d9nYQ5NeMIwp5PP+f8wXgKNljpOb7KtH6SKW1cEqcXAz9VSJYVLKe7Jhup/gUYOkaeSVyK8GJ+nBg==}
     engines: {node: '>=12'}
-    dev: false
+    dev: true
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
