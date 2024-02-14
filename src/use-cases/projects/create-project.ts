@@ -1,6 +1,9 @@
 import { Project } from '@prisma/client'
 
 import { ProjectsRepository } from '@/repositories/projects-repository'
+import { UsersRepository } from '@/repositories/users-repository'
+
+import { UserNotFoundError } from '../errors/user-not-found-error'
 
 interface CreateProjectRequest {
   name: string
@@ -13,17 +16,26 @@ interface CreateProjectResponse {
 }
 
 export class CreateProjectUseCase {
-  constructor(private projectsRepository: ProjectsRepository) {}
+  constructor(
+    private projectsRepository: ProjectsRepository,
+    private usersRepository: UsersRepository,
+  ) {}
 
   async execute({
     name,
     description,
     userId,
   }: CreateProjectRequest): Promise<CreateProjectResponse> {
+    const user = await this.usersRepository.findById(userId)
+
+    if (!user) {
+      throw new UserNotFoundError()
+    }
+
     const project = await this.projectsRepository.create({
       name,
       description,
-      userId,
+      userId: user.id,
     })
 
     return { project }
