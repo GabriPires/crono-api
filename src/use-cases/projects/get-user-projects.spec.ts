@@ -23,7 +23,7 @@ describe('Get User Projects', () => {
       userId: 'user-id',
     })
 
-    const { projects } = await sut.execute('user-id')
+    const { projects } = await sut.execute({ userId: 'user-id' })
 
     expect(projects).toHaveLength(2)
     expect(projects[0].id).toEqual(project1.id)
@@ -31,7 +31,7 @@ describe('Get User Projects', () => {
   })
 
   it('should return an empty array if no projects are found', async () => {
-    const { projects } = await sut.execute('user-id')
+    const { projects } = await sut.execute({ userId: 'user-id' })
 
     expect(projects).toEqual([])
   })

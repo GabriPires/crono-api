@@ -15,6 +15,16 @@ export class PrismaProjectsRepository implements ProjectsRepository {
     return project
   }
 
+  async findManyByUserId(userId: string): Promise<Project[]> {
+    const projects = await prisma.project.findMany({
+      where: {
+        userId,
+      },
+    })
+
+    return projects
+  }
+
   async create(data: Prisma.ProjectUncheckedCreateInput) {
     const project = await prisma.project.create({
       data,
