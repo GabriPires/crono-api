@@ -38,7 +38,7 @@ describe('Start Appointment', () => {
   })
 
   it('should be able to start a new appointment', async () => {
-    const appointment = await sut.execute({
+    const { appointment } = await sut.execute({
       userId: 'user-id',
       projectId: 'project-id',
     })

@@ -45,6 +45,6 @@ export class StartAppointmentUseCase {
       current: true,
     })
 
-    return appointment
+    return { appointment }
   }
 }

@@ -22,7 +22,7 @@ describe('Finish Appointments', () => {
       description: '',
     })
 
-    const updatedAppointment = await sut.execute({
+    const { updatedAppointment } = await sut.execute({
       appointmentId: appointment.id,
       description: 'description',
     })

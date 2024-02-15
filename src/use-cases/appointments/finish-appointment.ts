@@ -30,6 +30,6 @@ export class FinishAppointmentUseCase {
       description,
     })
 
-    return updatedAppointment
+    return { updatedAppointment }
   }
 }
