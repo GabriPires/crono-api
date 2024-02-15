@@ -3,8 +3,7 @@ import { InMemoryProjectsRepository } from '@/repositories/in-memory/in-memory-p
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 
 import { AlreadyHasActiveAppointment } from '../errors/already-has-active-appointment'
-import { ProjectNotFoundError } from '../errors/project-not-found-error'
-import { UserNotFoundError } from '../errors/user-not-found-error'
+import { ResourceNotFoundError } from '../errors/resource-not-found-error'
 import { StartAppointmentUseCase } from './start-appointment'
 
 let usersRepository: InMemoryUsersRepository
@@ -70,7 +69,7 @@ describe('Start Appointment', () => {
         userId: 'non-existing-user-id',
         projectId: 'non-existing-project-id',
       }),
-    ).rejects.toBeInstanceOf(UserNotFoundError)
+    ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 
   it('should not be able to start a new appointment if project does not exist', async () => {
@@ -79,6 +78,6 @@ describe('Start Appointment', () => {
         userId: 'user-id',
         projectId: 'non-existing-project-id',
       }),
-    ).rejects.toBeInstanceOf(ProjectNotFoundError)
+    ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })

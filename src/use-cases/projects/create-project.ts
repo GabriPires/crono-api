@@ -3,7 +3,7 @@ import { Project } from '@prisma/client'
 import { ProjectsRepository } from '@/repositories/projects-repository'
 import { UsersRepository } from '@/repositories/users-repository'
 
-import { UserNotFoundError } from '../errors/user-not-found-error'
+import { ResourceNotFoundError } from '../errors/resource-not-found-error'
 
 interface CreateProjectRequest {
   name: string
@@ -29,7 +29,7 @@ export class CreateProjectUseCase {
     const user = await this.usersRepository.findById(userId)
 
     if (!user) {
-      throw new UserNotFoundError()
+      throw new ResourceNotFoundError()
     }
 
     const project = await this.projectsRepository.create({

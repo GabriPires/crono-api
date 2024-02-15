@@ -1,7 +1,7 @@
 import { InMemoryProjectsRepository } from '@/repositories/in-memory/in-memory-projects-repository'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 
-import { UserNotFoundError } from '../errors/user-not-found-error'
+import { ResourceNotFoundError } from '../errors/resource-not-found-error'
 import { CreateProjectUseCase } from './create-project'
 
 let projectsRepository: InMemoryProjectsRepository
@@ -39,6 +39,6 @@ describe('Create Project', () => {
         description: 'Project Description',
         userId: 'non-existing-user-id',
       }),
-    ).rejects.toBeInstanceOf(UserNotFoundError)
+    ).rejects.toBeInstanceOf(ResourceNotFoundError)
   })
 })
