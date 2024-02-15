@@ -26,11 +26,17 @@ app.setErrorHandler((error, _, response) => {
   if (error instanceof ZodError) {
     return response
       .status(400)
-      .send({ message: 'Validation error.', issues: error.format() })
+      .send({ message: 'Validation error', issues: error.format() })
   }
 
   if (env.NODE_ENV !== 'production') {
     console.error(error)
+
+    if (error.message) {
+      return response.status(400).send({ message: error.message })
+    } else {
+      return response.status(500).send({ message: 'Internal server error.' })
+    }
   } else {
     // TODO: Log error on external service
   }
