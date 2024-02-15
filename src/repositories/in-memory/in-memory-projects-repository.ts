@@ -30,4 +30,12 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
 
     return project
   }
+
+  async findManyByUserId(userId: string) {
+    const projects = this.projects.filter(
+      (project) => project.userId === userId,
+    )
+
+    return projects
+  }
 }
