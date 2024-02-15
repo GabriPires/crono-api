@@ -9,7 +9,7 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
 
   async create(data: Prisma.ProjectUncheckedCreateInput) {
     const project = {
-      id: randomUUID(),
+      id: data.id ?? randomUUID(),
       name: data.name,
       description: data.description,
       userId: data.userId,
@@ -17,6 +17,16 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
     }
 
     this.projects.push(project)
+
+    return project
+  }
+
+  async findById(id: string) {
+    const project = this.projects.find((project) => project.id === id)
+
+    if (!project) {
+      return null
+    }
 
     return project
   }
