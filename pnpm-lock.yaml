@@ -40,6 +40,9 @@ devDependencies:
   '@vitest/coverage-v8':
     specifier: ^1.2.2
     version: 1.2.2(vitest@1.2.2)
+  '@vitest/ui':
+    specifier: ^1.2.2
+    version: 1.2.2(vitest@1.2.2)
   cz-emoji-conventional:
     specifier: ^1.0.2
     version: 1.0.2(@types/node@20.11.17)(typescript@5.3.3)
@@ -60,7 +63,7 @@ devDependencies:
     version: 4.3.1(typescript@5.3.3)
   vitest:
     specifier: ^1.2.2
-    version: 1.2.2(@types/node@20.11.17)
+    version: 1.2.2(@types/node@20.11.17)(@vitest/ui@1.2.2)
 
 packages:
 
@@ -608,6 +611,10 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dev: true
 
+  /@polka/url@1.0.0-next.24:
+    resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
+    dev: true
+
   /@prisma/client@5.9.1(prisma@5.9.1):
     resolution: {integrity: sha512-caSOnG4kxcSkhqC/2ShV7rEoWwd3XrftokxJqOCMVvia4NYV/TPtJlS9C2os3Igxw/Qyxumj9GBQzcStzECvtQ==}
     engines: {node: '>=16.13'}
@@ -940,7 +947,7 @@ packages:
       std-env: 3.7.0
       test-exclude: 6.0.0
       v8-to-istanbul: 9.2.0
-      vitest: 1.2.2(@types/node@20.11.17)
+      vitest: 1.2.2(@types/node@20.11.17)(@vitest/ui@1.2.2)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -973,6 +980,21 @@ packages:
     resolution: {integrity: sha512-k9Gcahssw8d7X3pSLq3e3XEu/0L78mUkCjivUqCQeXJm9clfXR/Td8+AP+VC1O6fKPIDLcHDTAmBOINVuv6+7g==}
     dependencies:
       tinyspy: 2.2.1
+    dev: true
+
+  /@vitest/ui@1.2.2(vitest@1.2.2):
+    resolution: {integrity: sha512-CG+5fa8lyoBr+9i+UZGS31Qw81v33QlD10uecHxN2CLJVN+jLnqx4pGzGvFFeJ7jSnUCT0AlbmVWY6fU6NJZmw==}
+    peerDependencies:
+      vitest: ^1.0.0
+    dependencies:
+      '@vitest/utils': 1.2.2
+      fast-glob: 3.3.2
+      fflate: 0.8.2
+      flatted: 3.2.9
+      pathe: 1.1.2
+      picocolors: 1.0.0
+      sirv: 2.0.4
+      vitest: 1.2.2(@types/node@20.11.17)(@vitest/ui@1.2.2)
     dev: true
 
   /@vitest/utils@1.2.2:
@@ -2329,6 +2351,10 @@ packages:
       xtend: 4.0.2
     dev: false
 
+  /fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
+    dev: true
+
   /figures@3.2.0:
     resolution: {integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==}
     engines: {node: '>=8'}
@@ -3246,6 +3272,11 @@ packages:
       obliterator: 2.0.4
     dev: false
 
+  /mrmime@2.0.0:
+    resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}
+    engines: {node: '>=10'}
+    dev: true
+
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
@@ -3919,6 +3950,15 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
+  /sirv@2.0.4:
+    resolution: {integrity: sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==}
+    engines: {node: '>= 10'}
+    dependencies:
+      '@polka/url': 1.0.0-next.24
+      mrmime: 2.0.0
+      totalist: 3.0.1
+    dev: true
+
   /slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
@@ -4136,6 +4176,11 @@ packages:
     resolution: {integrity: sha512-/m8M+2BJUpoJdgAHoG+baCwBT+tf2VraSfkBgl0Y00qIWt41DJ8R5B8nsEw0I58YwF5IZH6z24/2TobDKnqSWw==}
     engines: {node: '>=12'}
     dev: false
+
+  /totalist@3.0.1:
+    resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
+    engines: {node: '>=6'}
+    dev: true
 
   /ts-api-utils@1.2.1(typescript@5.3.3):
     resolution: {integrity: sha512-RIYA36cJn2WiH9Hy77hdF9r7oEwxAtB/TS9/S4Qd90Ap4z5FSiin5zEiTL44OII1Y3IIlEvxwxFUVgrHSZ/UpA==}
@@ -4362,7 +4407,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@1.2.2(@types/node@20.11.17):
+  /vitest@1.2.2(@types/node@20.11.17)(@vitest/ui@1.2.2):
     resolution: {integrity: sha512-d5Ouvrnms3GD9USIK36KG8OZ5bEvKEkITFtnGv56HFaSlbItJuYr7hv2Lkn903+AvRAgSixiamozUVfORUekjw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -4392,6 +4437,7 @@ packages:
       '@vitest/runner': 1.2.2
       '@vitest/snapshot': 1.2.2
       '@vitest/spy': 1.2.2
+      '@vitest/ui': 1.2.2(vitest@1.2.2)
       '@vitest/utils': 1.2.2
       acorn-walk: 8.3.2
       cac: 6.7.14
