@@ -17,6 +17,7 @@ describe('Get User Projects', () => {
       description: 'Description 1',
       userId: 'user-id',
     })
+
     const project2 = await projectsRepository.create({
       name: 'Project 2',
       description: 'Description 2',
@@ -34,5 +35,51 @@ describe('Get User Projects', () => {
     const { projects } = await sut.execute({ userId: 'user-id' })
 
     expect(projects).toEqual([])
+  })
+
+  it('should return only the non-archived projects', async () => {
+    const project = await projectsRepository.create({
+      name: 'Project 1',
+      description: 'Description 1',
+      userId: 'user-id',
+    })
+
+    await projectsRepository.create({
+      name: 'Project 2',
+      description: 'Description 2',
+      userId: 'user-id',
+      isArchived: true,
+    })
+
+    const { projects } = await sut.execute({
+      userId: 'user-id',
+      isArchived: false,
+    })
+
+    expect(projects).toHaveLength(1)
+    expect(projects[0].id).toEqual(project.id)
+  })
+
+  it('should return only the archived projects', async () => {
+    await projectsRepository.create({
+      name: 'Project 1',
+      description: 'Description 1',
+      userId: 'user-id',
+    })
+
+    await projectsRepository.create({
+      name: 'Project 2',
+      description: 'Description 2',
+      userId: 'user-id',
+      isArchived: true,
+    })
+
+    const { projects } = await sut.execute({
+      userId: 'user-id',
+      isArchived: true,
+    })
+
+    expect(projects).toHaveLength(1)
+    expect(projects[0].isArchived).toEqual(true)
   })
 })

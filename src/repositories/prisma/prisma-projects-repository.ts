@@ -2,7 +2,10 @@ import { Prisma, Project } from '@prisma/client'
 
 import { prisma } from '@/lib/prisma'
 
-import { ProjectsRepository } from '../projects-repository'
+import {
+  FindManyByUserIdParams,
+  ProjectsRepository,
+} from '../projects-repository'
 
 export class PrismaProjectsRepository implements ProjectsRepository {
   async findById(id: string): Promise<Project | null> {
@@ -15,10 +18,14 @@ export class PrismaProjectsRepository implements ProjectsRepository {
     return project
   }
 
-  async findManyByUserId(userId: string): Promise<Project[]> {
+  async findManyByUserId(
+    userId: string,
+    params: FindManyByUserIdParams | undefined,
+  ): Promise<Project[]> {
     const projects = await prisma.project.findMany({
       where: {
         userId,
+        isArchived: params?.isArchived,
       },
     })
 

@@ -2,7 +2,10 @@ import { randomUUID } from 'node:crypto'
 
 import { Prisma, Project } from '@prisma/client'
 
-import { ProjectsRepository } from '../projects-repository'
+import {
+  FindManyByUserIdParams,
+  ProjectsRepository,
+} from '../projects-repository'
 
 export class InMemoryProjectsRepository implements ProjectsRepository {
   public projects: Project[] = []
@@ -14,6 +17,7 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
       description: data.description,
       userId: data.userId,
       createdAt: new Date(),
+      isArchived: data.isArchived || false,
     }
 
     this.projects.push(project)
@@ -31,9 +35,15 @@ export class InMemoryProjectsRepository implements ProjectsRepository {
     return project
   }
 
-  async findManyByUserId(userId: string) {
+  async findManyByUserId(
+    userId: string,
+    params?: FindManyByUserIdParams | undefined,
+  ) {
     const projects = this.projects.filter(
-      (project) => project.userId === userId,
+      (project) =>
+        (project.userId === userId &&
+          project.isArchived === params?.isArchived) ||
+        false,
     )
 
     return projects
