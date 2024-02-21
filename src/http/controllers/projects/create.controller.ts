@@ -9,17 +9,18 @@ export async function createProject(
 ) {
   const createProjectBodySchema = z.object({
     name: z.string().min(1),
-    description: z.string().min(1),
-    userId: z.string().min(1),
+    description: z.string(),
   })
 
-  const { name, description, userId } = createProjectBodySchema.parse(
-    request.body,
-  )
+  const { name, description } = createProjectBodySchema.parse(request.body)
 
   const createProjectUseCase = makeCreateProjectUseCase()
 
-  await createProjectUseCase.execute({ name, description, userId })
+  await createProjectUseCase.execute({
+    name,
+    description,
+    userId: request.user.sub,
+  })
 
   return reply.code(201).send()
 }
