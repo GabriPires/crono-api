@@ -8,7 +8,7 @@ export async function getUserProjects(
   reply: FastifyReply,
 ) {
   const getUserProjectsParamsSchema = z.object({
-    isArchived: z.boolean().optional().default(false),
+    isArchived: z.coerce.boolean().optional().default(false),
   })
 
   const { isArchived } = getUserProjectsParamsSchema.parse(request.query)
